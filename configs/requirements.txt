@@ -1,0 +1,13 @@
+﻿pymilvus==2.3.4
+dashscope==1.14.1
+python-dotenv==1.0.0
+pandas==2.1.4
+numpy==1.24.3
+openpyxl==3.1.2
+google-generativeai==0.3.2
+langgraph==0.2.26
+pydantic==2.8.2
+streamlit==1.29.0
+pymysql==1.1.0
+# Python 3.10+ 兼容性说明
+# 所有依赖包均支持Python 3.10及以上版本

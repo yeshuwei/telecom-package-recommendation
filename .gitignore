@@ -1,0 +1,39 @@
+# 虚拟环境
+.venv/
+__pycache__/
+*.pyc
+
+# 日志文件
+*.log
+logs/
+
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+
+# IDE相关
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 数据库文件
+*.db
+*.sqlite3
+
+# 临时文件
+*.tmp
+*.temp
+
+# Excel文件（如果不需要上传）
+*.xlsx
+
+# Milvus数据（如果不需要上传）
+milvus/data/
+
+# 构建文件
+build/
+dist/
+*.egg-info/
