@@ -319,21 +319,29 @@ class RecommendationAgent:
         user_explicit_needs = state.get("user_explicit_needs")  # 可能为空（流程1）
         merged_user_info = state.get("merged_user_info", {})  # 合并后的用户信息（优先使用覆盖值）
         db_user_summary = state.get("db_user_summary", "")  # 应该有（由前置agent生成）
+        cfg = state.get("_config", {})
+        use_rag = cfg.get("use_rag", True)  # 默认启用RAG
 
         # === 阶段1：RAG检索 - 基于用户需求总结 ===
         logger.info("\n【阶段1】RAG检索：基于用户需求总结检索推荐原则")
-        principles = self.retrieve_package_categories(db_user_summary, top_k=5)
-        
-        if not principles:
-            logger.warning("⚠️ RAG检索未返回推荐原则")
-        
+        if use_rag:
+            principles = self.retrieve_package_categories(db_user_summary, top_k=5)
+            if not principles:
+                logger.warning("⚠️ RAG检索未返回推荐原则")
+        else:
+            logger.info("消融配置：跳过RAG检索")
+            principles = []
+
         # === 阶段2：LLM筛选 - 判断触发条件 ===
         logger.info("\n【阶段2】LLM筛选：判断用户是否满足推荐原则的触发条件")
-        llm_filtered_categories = self.filter_packages_by_trigger_conditions(
-            user_explicit_needs,
-            merged_user_info,
-            principles
-        )
+        if use_rag and principles:
+            llm_filtered_categories = self.filter_packages_by_trigger_conditions(
+                user_explicit_needs,
+                merged_user_info,
+                principles
+            )
+        else:
+            llm_filtered_categories = []
         logger.info(f"LLM筛选结果（满足触发条件）: {llm_filtered_categories if llm_filtered_categories else '无'}")
         
         # === 阶段3：规则映射 - 基于用户明确需求 ===

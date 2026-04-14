@@ -168,6 +168,7 @@ class AgentState(TypedDict, total=False):
     # === 流程控制 ===
     final_response: str  # 最终给用户的回复
     next_node_to_call: str  # 路由决策结果
+    _config: Dict[str, Any]  # 实验配置开关（评估时注入，正常对话可不传）
 
 
 # 数据库字段映射（UserDatabaseOverride字段 → 数据库字段名）

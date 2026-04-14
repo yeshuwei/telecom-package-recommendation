@@ -99,15 +99,17 @@ def entry_conditional_edges(state: AgentState) -> str:
 
 def router_conditional_edges(state: AgentState) -> str:
     """
-    路由器的条件边函数
-    
-    Args:
-        state: 当前状态
-        
-    Returns:
-        下一个节点名称
+    路由器的条件边函数。
+    若实验配置关闭了 slot_filling，clarify_recommendation 直接走 user_info_agent。
     """
     next_node = state.get("next_node_to_call", "general_agent")
+    cfg = state.get("_config", {})
+
+    # 消融：禁用 slot_filling 时，将 clarify 路径改走 user_info_agent
+    if next_node == "slot_filling_agent" and not cfg.get("use_slot_filling", True):
+        logger.info("消融配置：跳过 slot_filling_agent，改走 user_info_agent")
+        next_node = "user_info_agent"
+
     logger.info(f"路由决策: {next_node}")
     return next_node
 

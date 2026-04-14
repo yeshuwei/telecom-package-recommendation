@@ -1,0 +1,7 @@
+system:
+  mode: "agent"
+  use_rag: true
+  use_slot_filling: false
+  use_user_history: true
+  use_price_selector: true
+  use_knowledge_compare: true

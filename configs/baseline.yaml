@@ -1,0 +1,7 @@
+system:
+  mode: "rule"
+  use_rag: false
+  use_slot_filling: false
+  use_user_history: false
+  use_price_selector: false
+  use_knowledge_compare: false

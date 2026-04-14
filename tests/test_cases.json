@@ -1,0 +1,214 @@
+[
+  {
+    "id": "TC001",
+    "category": "clarify_recommendation",
+    "description": "用户有明确流量需求和预算",
+    "phone_number": "13800000001",
+    "input": "我每个月流量不够用，想换个流量多一点的套餐，预算100块以内",
+    "expected_intent": "clarify_recommendation",
+    "expected_slot": {
+      "is_data_overused": true,
+      "budget": "100"
+    },
+    "gold_packages": ["畅享套餐", "流量王套餐"],
+    "constraints": {
+      "budget_max": 100
+    }
+  },
+  {
+    "id": "TC002",
+    "category": "clarify_recommendation",
+    "description": "用户需要5G套餐",
+    "phone_number": "13800000002",
+    "input": "我刚换了5G手机，想办个5G套餐",
+    "expected_intent": "clarify_recommendation",
+    "expected_slot": {
+      "need_5g": true,
+      "is_5g_device": true
+    },
+    "gold_packages": ["5G畅享套餐"],
+    "constraints": {
+      "must": {"need_5g": true}
+    }
+  },
+  {
+    "id": "TC003",
+    "category": "clarify_recommendation",
+    "description": "家庭用户需要融合套餐含宽带",
+    "phone_number": "13800000003",
+    "input": "我家里有三口人，想办个有宽带的家庭套餐",
+    "expected_intent": "clarify_recommendation",
+    "expected_slot": {
+      "is_family_plan": true,
+      "need_broadband": true,
+      "family_type": "三口之家"
+    },
+    "gold_packages": ["家庭融合套餐"],
+    "constraints": {
+      "must": {"need_broadband": true}
+    }
+  },
+  {
+    "id": "TC004",
+    "category": "clarify_recommendation",
+    "description": "老年用户需要优惠套餐",
+    "phone_number": "13800000004",
+    "input": "我今年65岁了，想找个便宜实惠的套餐，不需要太多流量",
+    "expected_intent": "clarify_recommendation",
+    "expected_slot": {
+      "special_identity": "老年人",
+      "user_age": "老年"
+    },
+    "gold_packages": ["老年关爱套餐", "惠享套餐"],
+    "constraints": {
+      "budget_max": 60
+    }
+  },
+  {
+    "id": "TC005",
+    "category": "clarify_recommendation",
+    "description": "用户有视频需求且流量溢出",
+    "phone_number": "13800000005",
+    "input": "我天天刷抖音看爱奇艺，流量每个月都超，大概超20G左右",
+    "expected_intent": "clarify_recommendation",
+    "expected_slot": {
+      "video_needs": true,
+      "is_data_overused": true,
+      "data_overflow": 20
+    },
+    "gold_packages": ["视频畅享套餐", "流量王套餐"],
+    "constraints": {}
+  },
+  {
+    "id": "TC006",
+    "category": "unclear_recommendation",
+    "description": "用户无明确需求，依赖数据库画像",
+    "phone_number": "13800000006",
+    "input": "帮我推荐一个合适的套餐",
+    "expected_intent": "unclear_recommendation",
+    "expected_slot": {},
+    "gold_packages": [],
+    "constraints": {}
+  },
+  {
+    "id": "TC007",
+    "category": "unclear_recommendation",
+    "description": "用户只说想换套餐",
+    "phone_number": "13800000007",
+    "input": "我想换个套餐",
+    "expected_intent": "unclear_recommendation",
+    "expected_slot": {},
+    "gold_packages": [],
+    "constraints": {}
+  },
+  {
+    "id": "TC008",
+    "category": "inquiry",
+    "description": "用户查询某套餐详情",
+    "phone_number": "13800000008",
+    "input": "5G畅享套餐包含哪些内容？",
+    "expected_intent": "inquiry",
+    "expected_slot": {},
+    "gold_packages": [],
+    "constraints": {}
+  },
+  {
+    "id": "TC009",
+    "category": "comparison",
+    "description": "用户对比两个套餐",
+    "phone_number": "13800000009",
+    "input": "5G畅享套餐和家庭融合套餐有什么区别？",
+    "expected_intent": "comparison",
+    "expected_slot": {},
+    "gold_packages": [],
+    "constraints": {}
+  },
+  {
+    "id": "TC010",
+    "category": "clarify_recommendation",
+    "description": "军人身份用户",
+    "phone_number": "13800000010",
+    "input": "我是现役军人，有没有军人专属优惠套餐",
+    "expected_intent": "clarify_recommendation",
+    "expected_slot": {
+      "special_identity": "军人"
+    },
+    "gold_packages": ["军人优惠套餐"],
+    "constraints": {
+      "must": {"special_identity": "军人"}
+    }
+  },
+  {
+    "id": "TC011",
+    "category": "clarify_recommendation",
+    "description": "用户需要宽带升级",
+    "phone_number": "13800000011",
+    "input": "我现在宽带太慢了，想升级到千兆宽带",
+    "expected_intent": "clarify_recommendation",
+    "expected_slot": {
+      "need_broadband_upgrade": true
+    },
+    "gold_packages": ["千兆宽带融合套餐"],
+    "constraints": {}
+  },
+  {
+    "id": "TC012",
+    "category": "clarify_recommendation",
+    "description": "学生用户有教育需求",
+    "phone_number": "13800000012",
+    "input": "孩子要上网课，需要稳定的流量，有没有适合学生的套餐",
+    "expected_intent": "clarify_recommendation",
+    "expected_slot": {
+      "education_needs": true,
+      "has_student": true
+    },
+    "gold_packages": ["教育优惠套餐"],
+    "constraints": {}
+  },
+  {
+    "id": "TC013",
+    "category": "clarify_recommendation",
+    "description": "用户语音通话多",
+    "phone_number": "13800000013",
+    "input": "我经常打电话，每个月通话时间超了，想换个通话分钟多的套餐，预算150",
+    "expected_intent": "clarify_recommendation",
+    "expected_slot": {
+      "is_voice_exceeds": true,
+      "budget": "150"
+    },
+    "gold_packages": ["畅聊套餐"],
+    "constraints": {
+      "budget_max": 150
+    }
+  },
+  {
+    "id": "TC014",
+    "category": "clarify_recommendation",
+    "description": "用户偏好游戏直播",
+    "phone_number": "13800000014",
+    "input": "我喜欢打游戏看直播，流量消耗很大，有没有适合的套餐",
+    "expected_intent": "clarify_recommendation",
+    "expected_slot": {
+      "video_needs": true,
+      "preference_types": ["游戏", "直播"]
+    },
+    "gold_packages": ["游戏畅玩套餐", "流量王套餐"],
+    "constraints": {}
+  },
+  {
+    "id": "TC015",
+    "category": "clarify_recommendation",
+    "description": "贫困户用户寻求低价套餐",
+    "phone_number": "13800000015",
+    "input": "我家庭条件比较困难，有没有便宜的套餐，最好50块以内",
+    "expected_intent": "clarify_recommendation",
+    "expected_slot": {
+      "special_identity": "贫困户",
+      "budget": "50"
+    },
+    "gold_packages": ["惠民套餐"],
+    "constraints": {
+      "budget_max": 50
+    }
+  }
+]
