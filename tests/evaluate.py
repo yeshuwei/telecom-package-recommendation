@@ -219,7 +219,7 @@ def significance_tests(results: list):
 
 def main():
     test_cases = load_test_cases()
-    configs = ["baseline", "ablation_no_slot", "ours_full"]
+    configs = ["baseline", "ablation_no_slot", "ablation_no_rag", "ours_full"]
     results = []
     for cfg in configs:
         print(f"正在评估配置: {cfg} ...")
